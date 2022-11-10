@@ -1,7 +1,7 @@
 import React from 'react'
 import "./style.css"
 
-const todo = () => {
+const Todo = () => {
   return (
     <>
         <div className="main-div">
@@ -12,6 +12,7 @@ const todo = () => {
                 </figure>
                 <div className="addItems">
                     <input type="text" placeholder="✍️ Add Item" className="form-control"/>
+                    <i class="fa-solid fa-plus"></i>
                 </div>
             </div>
       </div>
@@ -19,4 +20,4 @@ const todo = () => {
   )
 }
 
-export default todo
+export default Todo
