@@ -1,9 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./style.css"
+
+//get the local storage data back 
+const getLocalData = () => {
+  const lists = localStorage.getItem("mytodolist");
+
+  if(lists) {
+    return JSON.parse(lists); //convert a string into array 
+  } else {
+    return [];
+  }
+};
+
 
 const Todo = () => {
   const [inputdata, setInputData] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(getLocalData());  //the Items having all the stored data of user n the form of array
 
   //creating the additem function
   const addItem = () => {
@@ -26,6 +38,11 @@ const Todo = () => {
     });
     setItems(updatedItem); //updatedItem will return an array of data excluding the object of deleted id
   };
+
+  //adding localStorage
+  useEffect(() => {
+    localStorage.setItem("mytodolist", JSON.stringify(items)); //as the localstorage() method takes parameter as key and value pair in String so thats why using Json.stringify() method we modified that items array into string 
+  }, [items]);
 
   return (
     <>
